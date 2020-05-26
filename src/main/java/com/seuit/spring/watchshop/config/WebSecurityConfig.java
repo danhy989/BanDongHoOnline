@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -45,27 +47,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
-		http
-		.httpBasic()
-		.and()
-		.cors()
-		.and()
-		.authorizeRequests()
-		.antMatchers("/admin/**").hasRole("admin")
-		.antMatchers("/manager/**").hasRole("manager")
-		.antMatchers("/employee/**").hasRole("employee")
-		.antMatchers(HttpMethod.POST,"/rest/products").hasRole("manager")
-		.antMatchers(HttpMethod.DELETE,"/rest/products/**").hasRole("manager")
-		.antMatchers(HttpMethod.PUT,"/rest/products/**").hasRole("manager")
-		.antMatchers("/**").permitAll()
-		.and()
-		.formLogin().defaultSuccessUrl("/")
-		.and()
-		.logout().permitAll().invalidateHttpSession(true)
-		.and()
-		.exceptionHandling()
-		.and()
-		.csrf().disable();
+		http.httpBasic().and().cors().and().authorizeRequests()
+				.antMatchers("/user/updatePassword*", "/user/savePassword*", "/updatePassword*")
+				.hasAuthority("CHANGE_PASSWORD_PRIVILEGE").antMatchers(HttpMethod.GET, "/rest/cart").hasRole("customer")
+				.antMatchers("/admin/CRUD_User/**").hasRole("admin").antMatchers("/admin/CRUD_Employees/**")
+				.hasRole("manager").antMatchers("/admin/CRUD_Products/**").hasRole("manager")
+				.antMatchers("/admin/reports/**").hasRole("manager").antMatchers(HttpMethod.GET, "/rest/products")
+				.permitAll().antMatchers(HttpMethod.POST, "/rest/products").hasRole("manager")
+				.antMatchers(HttpMethod.DELETE, "/rest/products/**").hasRole("manager")
+				.antMatchers(HttpMethod.PUT, "/rest/products/**").hasRole("manager")
+				.antMatchers(HttpMethod.POST, "/rest/employees/**").hasRole("manager")
+				.antMatchers(HttpMethod.PUT, "/rest/employees/**").hasRole("manager")
+				.antMatchers(HttpMethod.DELETE, "/rest/employees/**").hasRole("manager")
+				.antMatchers(HttpMethod.GET, "/rest/employees/**").hasRole("manager")
+				 .antMatchers("/admin/report/**").hasRole("manager")
+				 .antMatchers("/admin/feedback/**").hasRole("manager")
+				 .antMatchers("/admin/CRUD_OtherFunction/**").hasRole("manager")
+				 .antMatchers("/admin/list_Customers/**").hasRole("employee")
+				 .antMatchers("/admin/order/**").hasRole("employee")
+				.antMatchers("/cart","/checkout","/account").hasRole("customer")
+				.antMatchers(HttpMethod.POST, "/rest/cart").hasRole("customer").antMatchers("/admin/**")
+				.hasAnyRole("admin", "manager", "employee").antMatchers("/**").permitAll().and().formLogin()
+				.loginPage("/login").defaultSuccessUrl("/", true).failureUrl("/login?error=true").permitAll().and()
+				.exceptionHandling().and().logout().permitAll()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")).deleteCookies("JSESSIONID").and()
+				.rememberMe().rememberMeParameter("userRememberMe").rememberMeCookieName("userRememberMe").and().csrf()
+				.disable();
 	}
 
 }

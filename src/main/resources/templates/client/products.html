@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="fragments/head.html :: head"></th:block>
+
+    <!-- CSS files -->
+    <link th:href="@{/css/products_styles.css}" rel="stylesheet">
+    <link th:href="@{/css/products_responsive.css}" rel="stylesheet">
+
+    <!-- Page title -->
+    <title>UIT Watchshop - Sản phẩm</title>
+</head>
+
+<body>
+    <header th:include="fragments/header.html :: header"></header>
+
+    <!-- Loading screen -->
+    <div class="screen-cover d-flex justify-content-center align-items-center hidden">
+        <div class="spinner-border text-success" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <section class="section-page-title">
+        <div class="container">
+            <div class="row">
+                <h2 class="section-heading"></h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page content here -->
+    <section class="section-sort-filter">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-md-6">
+                    <div class="form-group">
+                        <label for="sortInput" style="font-weight: 500;">Sắp xếp</label>
+                        <select id="sortInput" class="form-control">
+                            <option value="-1" selected>Nổi bật nhất</option>
+                            <option value="asc">Giá tăng dần</option>
+                            <option value="desc">Giá giảm dần</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-md-6"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-product-list">
+        <div class="container">
+            <div class="row">
+
+                <!-- Products go here -->
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section-pagination-links">
+        <div class="container">
+            <div class="row">
+                <nav class="full-width" aria-label="Products navigation">
+                    <ul class="pagination justify-content-center">
+
+                        <!-- Pagination links go here -->
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <footer th:include="fragments/footer.html :: footer"></footer>
+
+    <th:block th:include="fragments/scripts.html :: scripts"></th:block>
+
+    <!-- Scripts -->
+    <script th:src="@{/js/paginator.js}"></script>
+    <script th:src="@{/js/products_script.js}"></script>
+</body>
+
+</html>

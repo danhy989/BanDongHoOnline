@@ -1,0 +1,35 @@
+@import "values.scss";
+@import "mixins.scss";
+@import "rules.scss";
+@import "reusables.scss";
+@import "components.scss";
+
+section {
+    padding-top: $spacing-y-medium;
+    padding-bottom: 0;
+
+    &.section-customer-actions {
+        padding-bottom: $spacing-y-medium;
+    }
+
+    .card {
+        &.account-card {
+
+            h6.card-title {
+                font-weight: $font-wt-medium;
+                margin-bottom: 6px;
+            }
+
+            .card-entry {
+                margin-bottom: 24px;
+            }
+        }
+    }
+
+    p.invalid-info-alert {
+        color: $color-error;
+        font-size: $font-size-small;
+        margin: 0;
+        padding: 0;
+    }
+}

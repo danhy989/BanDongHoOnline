@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="header">
+
+    <nav class="navigation desktop-navigation">
+        <div class="container">
+            <div class="row pt-3 pb-2">
+                <div class="col-md-3">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">UIT Watchshop</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-7 col-md-6">
+                    <div class="input-group">
+                        <input type="text" id="main-search" class="form-control" placeholder="Tìm kiếm sản phẩm"
+                            aria-label="Search">
+                        <div class="input-group-append">
+                            <button id="btn-main-search" class="btn btn-outline-success" type="button">Tìm kiếm</button>
+                        </div>
+                    </div>
+
+                    <ul class="search-suggestion">
+
+                        <!-- Search suggestion will show up here whenever user enters a keyword -->
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-3">
+                    <div class="navbar-icons stretched-container d-flex justify-content-end align-items-end">
+
+                        <div class="account-dropdown" style="float: right;">
+                            <a id="account" class="regular-link" href="/account">
+                                <ion-icon name="ios-person" class="regular-icon"></ion-icon>
+                            </a>
+                            <ul class="dropdown-content">
+
+                            </ul>
+                        </div>
+
+                        <a id="cart" class="regular-link pl-lg-4 pl-3" href="/cart" title="Giỏ hàng"
+                            data-toggle="popover" data-placement="bottom" data-content="">
+                            <ion-icon name="ios-cart" class="regular-icon"></ion-icon>
+                            <span id="cart-count-badge" class="badge badge-pill badge-danger">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-lg-0 pt-md-1">
+                <div class="col-lg-3 col-md-4">
+                    <div class="stretched-container d-flex justify-content-start align-items-end">
+                        <div class="dropdown product-classification-dropdown">
+                            <button class="btn btn-square-bottom btn-success dropdown-toggle" type="button"
+                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Danh mục sản phẩm
+                            </button>
+
+                            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item mr-3" href="#" onclick="return false;">
+                                        Theo hãng
+                                    </a>
+                                    <ul id="productsByBrandDropdown" class="dropdown-menu">
+                                        <!-- <li class="dropdown-item"><a href="#">Đồng hồ Citizen</a></li>
+                                        <li class="dropdown-item"><a href="#">Đồng hồ Bulova</a></li>
+                                        <li class="dropdown-item"><a href="#">Đồng hồ Orient</a></li>
+                                        <li class="dropdown-item"><a href="#">Đồng hồ Ogival</a></li>
+                                        <li class="dropdown-item"><a href="#">Đồng hồ Seiko</a></li> -->
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item mr-3" href="#" onclick="return false;">
+                                        Theo kiểu máy
+                                    </a>
+                                    <ul id="productsByModelDropdown" class="dropdown-menu">
+                                        <!-- <li class="dropdown-item"><a href="#">Second level</a></li>
+                                        <li class="dropdown-item"><a href="#">Second level</a></li> -->
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item mr-3" href="#" onclick="return false;">
+                                        Theo xuất xứ
+                                    </a>
+                                    <ul id="productsByOriginDropdown" class="dropdown-menu">
+                                        <!-- <li class="dropdown-item"><a href="#">Second level</a></li>
+                                        <li class="dropdown-item"><a href="#">Second level</a></li>
+                                        <li class="dropdown-item"><a href="#">Second level</a></li> -->
+                                    </ul>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-9 col-md-8">
+                    <div class="stretched-container d-flex justify-content-start align-items-end">
+                        <ul class="main-nav content-wrapper">
+                            <li class="nav-item">
+                                <a id="home-page-link" class="nav-link" href="/">Trang chủ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="contact-page-link" class="nav-link" href="#">Liên hệ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="navigation mobile-navigation">
+        <div class="container">
+            <div class="row py-2">
+                <div class="col-6">
+                    <div class="navbar-header stretched-container d-flex align-items-center">
+                        <a class="navbar-brand" href="#">UIT Watchshop</a>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="hamburger btn btn-light">
+                            <ion-icon name="ios-menu" class="hamburger-icon large-icon">
+                            </ion-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hamburger-menu"></div>
+
+</div>
+
+</html>

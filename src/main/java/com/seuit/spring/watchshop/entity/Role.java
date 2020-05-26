@@ -1,5 +1,6 @@
 package com.seuit.spring.watchshop.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="role")
 public class Role {
@@ -23,8 +26,9 @@ public class Role {
 	@Column(name="name")
 	private String name;
 	
-	@ManyToMany(mappedBy="roles",fetch=FetchType.EAGER,cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-	private Set<User> users;
+	@ManyToMany(mappedBy="roles",fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<User> users = new HashSet<>();
 
 	public Integer getId() {
 		return id;
@@ -59,8 +63,4 @@ public class Role {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
-	
-	
 }

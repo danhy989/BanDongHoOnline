@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Admin Page - Dashboard</title>
+<th:block th:include="fragments/adminPageFragment.html :: headerfiles"></th:block>
+</head>
+
+<body id="page-top">
+
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul th:replace="fragments/adminPageFragment.html :: sideBar"></ul>
+		<!-- End of Sidebar -->
+
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<!-- Main Content -->
+			<div id="content">
+
+				<!-- Topbar -->
+				<nav th:replace="fragments/adminPageFragment.html :: topBar">
+				</nav>
+				<!-- End of Topbar -->
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+					<!-- DataTales Example -->
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">List Order</h6>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<p>
+									<font color="blue">Custom order by :</font>
+								</p>
+								<div class="d-flex justify-content-around">
+									<div>
+										<p>Created:</p>
+										<select id="selectCreate">
+											<option selected="selected" value="0">Default</option>
+											<option value="1">Latest</option>
+											<option value="2">Oldest</option>
+										</select>
+									</div>
+									<div>
+										<p>Price:</p>
+										<select id="selectPrice">
+											<option selected="selected" value="0">Default</option>
+											<option value="1">Highest to lowest</option>
+											<option value="2">Lowest to highest</option>
+										</select>
+									</div>
+									<div>
+										<p>Payments:</p>
+										<select id="selectPayment">
+											<option selected="selected" value="0">Default</option>
+											<option value="1">Payment at the store</option>
+											<option value="2">Payment with COD</option>
+										</select>
+									</div>
+								</div>
+								<br>
+								<p>
+									<font color="blue">Fliter: </font>
+								</p>
+								<div class="d-flex justify-content-center">
+									<button style="width: 12%; height: 12%;"
+										onclick="fliterOrderStatus(0)" class="label other">All</button>
+									<button style="width: 12%; height: 12%;"
+										onclick="fliterOrderStatus(1)" class="label warning">Unconfirmed</button>
+									<button style="width: 12%; height: 12%;"
+										onclick="fliterOrderStatus(2)" class="label info">Confirmed</button>
+									<button style="width: 12%; height: 12%;"
+										onclick="fliterOrderStatus(3)" class="label success">Paid</button>
+									<button style="width: 12%; height: 12%;"
+										onclick="fliterOrderStatus(4)" class="label danger">Unpaid</button>
+								</div>
+
+								<br>
+
+								<table class="table table-bordered" id="mytable" width="100%"
+									cellspacing="0">
+									
+									<thead>
+									<div class="d-flex justify-content-left">
+									Show  
+										<select id="chooseSize">
+											<option selected="selected" value="5">5</option>
+											<option value="10">10</option>
+											<option value="15">15</option>
+											<option value="20">20</option>
+											<option value="50">50</option>
+											<option value="100">100</option>
+										</select>
+									entry 
+									</div>
+									
+										<tr>
+											<th>Order Id</th>
+											<th>Total Price</th>
+											<th>Status</th>
+											<th>Created</th>
+											<th>Payments</th>
+											<th>View Products</th>
+										</tr>
+									</thead>
+									<tbody>
+
+									</tbody>
+								</table>
+							</div> 
+						</div>
+					</div>
+					<div class="d-flex justify-content-end" id="pagination">
+						<ul class="pagination">
+						
+						</ul>
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+			<div class="modal fade" id="viewProduct" tabindex="-1" role="dialog"
+				aria-labelledby="viewProduct" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							</button>
+							<h2 class="modal-title custom_align" id="Heading">Products</h2>
+						</div>
+						<div class="modal-body" id="orderDetailBody"></div>
+						<div class="modal-footer" id="orderDetailFooter"></div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- End of Main Content -->
+
+			<!-- Footer -->
+			<footer th:replace="fragments/adminPageFragment.html :: footer">
+			</footer>
+			<!-- End of Footer -->
+
+		</div>
+		<!-- End of Content Wrapper -->
+
+	</div>
+	<!-- End of Page Wrapper -->
+
+	<!-- Scroll to Top Button-->
+	<a th:replace="fragments/adminPageFragment.html :: scrollTopButton">
+
+	</a>
+
+	<!-- Logout Modal-->
+	<div th:replace="fragments/adminPageFragment.html :: logoutModal">
+
+	</div>
+
+	<!-- Bootstrap core JavaScript-->
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+	<!-- Page level plugins -->
+	<script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+	<script th:src="@{/js/order-management.js}"></script>
+
+</body>
+
+</html>

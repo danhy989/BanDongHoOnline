@@ -1,0 +1,52 @@
+@import "values.scss";
+@import "mixins.scss";
+@import "rules.scss";
+@import "reusables.scss";
+@import "components.scss";
+
+section.section-product-overview {
+
+    h3.product-name {
+        margin: 0;
+        font-weight: 400;
+    }
+}
+
+section.section-all-details {
+    background-color: $color-background-silver;
+
+    /* Table borders */
+    table,
+    th,
+    td {
+        border: 1px solid #bbb;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 10px 15px;
+    }
+
+    table#details td:nth-child(odd) {
+        font-weight: $font-wt-medium;
+        color: #fff;
+        background-color: #636363;
+    }
+
+    table#details td:nth-child(even) {
+        color: #404040;
+    }
+
+}
+
+section.section-comments {
+    padding-bottom: $spacing-y-medium;
+
+    img.comment-avatar {
+        height: 64px;
+        border-radius: 50%;
+        margin-right: 12px;
+        vertical-align: middle;
+    }
+}

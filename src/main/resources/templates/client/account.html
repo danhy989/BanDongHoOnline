@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="fragments/head.html :: head"></th:block>
+
+    <!-- CSS files -->
+    <link th:href="@{/css/account_styles.css}" rel="stylesheet">
+    <link th:href="@{/css/account_responsive.css}" rel="stylesheet">
+
+    <!-- Page title -->
+    <title>UIT Watchshop - Tài khoản</title>
+</head>
+
+<body>
+    <header th:include="fragments/header.html :: header"></header>
+
+    <!-- Alerts -->
+    <div id="accountNotification" class="alert alert-success alert-dismissible collapse m-3" role="alert">
+        <p class="m-0"></p>
+        <button type="button" class="close" onclick="$('#accountNotification').hide();">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div id="accountAlert" class="alert alert-danger alert-dismissible collapse m-3" role="alert">
+        <p class="m-0"></p>
+        <button type="button" class="close" onclick="$('#accountAlert').hide();">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal fade" id="editCustomerInfoModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width: 120%;">
+                <div class="modal-header" style="border-bottom: 1px solid transparent;">
+                    <h5 class="modal-title">Chỉnh sửa thông tin</h5>
+                </div>
+                <div class="modal-body px-4 py-3">
+
+                    <form>
+                        <div class="form-group mb-4">
+                            <label for="inputCustomerName">Tên</label>
+                            <input type="text" class="form-control" id="inputCustomerName"
+                                aria-describedby="customerName" placeholder="Tên của bạn" required>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="inputCustomerPhone">Số điện thoại</label>
+                            <input type="text" class="form-control" id="inputCustomerPhone"
+                                aria-describedby="customerPhone" placeholder="Số điện thoại" required>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="inputCustomerAddress">Địa chỉ</label>
+                            <input type="text" class="form-control" id="inputCustomerAddress"
+                                aria-describedby="customerAddress" placeholder="Địa chỉ" required>
+                        </div>
+                    </form>
+                    <p id="invalidInfoAlert" class="invalid-info-alert hidden">
+                        Thông tin không hợp lệ. Vui lòng không bỏ trống bất kỳ trường nào.
+                    </p>
+
+                </div>
+                <div class="modal-footer" style="border-top: 1px solid transparent;">
+                    <button type="button" id="saveCustomerInfo" class="btn btn-success px-4">
+                        Lưu
+                    </button>
+
+                    <button type="button" class="btn btn-outline-secondary px-4" data-dismiss="modal">
+                        Hủy
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page content here -->
+    <section id="personal-info" class="section-customer-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card account-card" style="width: auto;">
+                        <div class="card-header">
+                            <div class="d-flex flex-row align-items-center">
+                                <h5 class="card-header-title flex-grow-1">Thông tin của bạn</h5>
+                                <a id="openInfoEdit" href="#" class="card-header-action">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <ion-icon name="ios-create" class="small-icon mr-1"></ion-icon>
+                                        Chỉnh sửa
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="delivery-info d-flex flex-column">
+                                <div class=" d-flex flex-row">
+                                    <div class="flex-grow-1 d-flex flex-column">
+                                        <div class="card-entry customer-name">
+                                            <h6 class="card-title">Tên</h6>
+                                            <p class="card-text"></p>
+                                        </div>
+                                        <div class="card-entry customer-phone">
+                                            <h6 class="card-title">Số điện thoại</h6>
+                                            <p class="card-text"></p>
+                                        </div>
+                                        <div class="card-entry customer-address mb-0">
+                                            <h6 class="card-title">Địa chỉ</h6>
+                                            <p class="card-text"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="orders" class="section-customer-orders">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card account-card" style="width: auto;">
+                        <div class="card-header">
+                            <div class="d-flex flex-row align-items-center">
+                                <h5 class="card-header-title flex-grow-1">Đơn hàng đã đặt</h5>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="customerOrderTable" class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Giá trị</th>
+                                            <th scope="col">Trạng thái</th>
+                                            <th scope="col">Hình thức thanh toán</th>
+                                            <th scope="col">Thời gian</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-customer-actions">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-end">
+                        <a href="/logout" class="btn btn-danger">
+                            Đăng xuất
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer th:include="fragments/footer.html :: footer"></footer>
+
+    <th:block th:include="fragments/scripts.html :: scripts"></th:block>
+
+    <!-- Scripts -->
+    <script th:src="@{/js/account_script.js}"></script>
+
+</body>
+
+</html>
